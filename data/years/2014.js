@@ -589,6 +589,40 @@ KUG.addYear({
           }
         ]
       }
+    },
+    {
+      "id": "c053082b",
+      "slug": "2014_special",
+      "title": "고려대학교 제2회 문화예술제 (’14)",
+      "type": "ETC",
+      "date": "2014-11-02",
+      "venue": "KBS홀",
+      "conductor": "",
+      "poster": "assets/posters/c053082b.webp",
+      "video": "https://www.youtube.com/watch?v=DfN8psBZbxs",
+      "pamphlet": 1,
+      "program": [
+        {
+          "performers": "고전기타부 교우회",
+          "pieces": [
+            {
+              "title": "Fantaisie, Op.54",
+              "composer": "Fernando Sor",
+              "videos": [
+                {
+                  "url": "https://www.youtube.com/watch?v=DfN8psBZbxs",
+                  "length": "13:30"
+                }
+              ],
+              "movements": [
+                "1. Andante Allegro",
+                "2. Andantino",
+                "3. Allegro. Dans le Genre Espagnol"
+              ]
+            }
+          ]
+        }
+      ]
     }
   ]
 });
