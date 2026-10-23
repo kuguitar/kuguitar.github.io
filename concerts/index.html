@@ -21,6 +21,7 @@
         <span class="eyebrow">Archive</span>
         <h1>연주회 아카이브</h1>
         <p id="archive-lead">1974년 창립기념연주회부터 지금까지 고전기타부가 올린 무대입니다. 공연자 이름이나 곡명, 작곡가로도 찾아볼 수 있어요.</p>
+        <p class="archive-note">그외 연주회는 재학생연주회/교우연주회 이외에 고전기타부에서 주최하거나 일부 참여하거나 하는 연주회들의 목록입니다.</p>
       </div>
     </section>
 
@@ -56,7 +57,7 @@
       var K = window.KUG, C = db.concerts;
       document.querySelectorAll('[data-icon]').forEach(function (el) { el.outerHTML = K.ICON[el.dataset.icon]; });
 
-      var TYPES = [['all', '전체'], ['정기', '정기'], ['신입', '신입생환영'], ['교우', '교우'], ['ETC', '특별']];
+      var TYPES = [['all', '전체'], ['정기', '정기'], ['신입', '신입생환영'], ['교우', '교우'], ['ETC', '그외']];
       var params = new URLSearchParams(location.search);
       var savedView = null;
       try { savedView = localStorage.getItem('kug-archive-view'); } catch (e) {}
@@ -165,7 +166,7 @@
         var play = c.video ? '<span class="lr-play" title="공연 영상 있음">' + K.ICON.play + '</span>' : '';
         return '<a class="list-row" href="' + href + '">' +
           '<span class="lr-date">' + day + '</span>' +
-          '<span class="badge" data-type="' + K.esc(c.type) + '">' + K.esc(c.type === 'ETC' ? '특별' : c.type) + '</span>' +
+          '<span class="badge" data-type="' + K.esc(c.type) + '">' + K.esc(c.type === 'ETC' ? '그외' : c.type) + '</span>' +
           '<span class="lr-main"><span class="lr-title">' + K.esc(K.titleOf(c)) + play + '</span>' + hitLine(c, term) + '</span>' +
           '<span class="lr-venue">' + K.esc(c.venue || '') + '</span>' +
           '</a>';

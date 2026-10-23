@@ -227,6 +227,7 @@ button { font: inherit; color: inherit; }
 }
 .page-hero h1 { font-family: var(--font-serif); font-size: clamp(32px, 5vw, 52px); font-weight: 700; }
 .page-hero p { margin-top: 12px; color: var(--ink-2); font-size: 17px; max-width: 680px; }
+.page-hero p.archive-note { margin-top: 8px; font-size: 14px; color: var(--ink-2); }
 .crumbs { font-size: 14px; color: var(--muted); margin-bottom: 14px; display: flex; gap: 8px; flex-wrap: wrap; }
 .crumbs a:hover { color: var(--crimson); }
 

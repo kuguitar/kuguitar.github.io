@@ -65,7 +65,7 @@
     return c.title.replace(/^0(\d)/, '$1').replace(/_/g, ' ').replace(/\s*\*\s*/, ' · ').replace(/\s+/g, ' ').trim();
   }
   function typeLabel(t) {
-    return { '정기': '정기연주회', '신입': '신입생환영연주회', '교우': '교우연주회', 'ETC': '특별연주회' }[t] || t;
+    return { '정기': '정기연주회', '신입': '신입생환영연주회', '교우': '교우연주회', 'ETC': '그외 연주회' }[t] || t;
   }
   function youtubeEmbed(url) {
     if (!url) return null;
@@ -92,7 +92,7 @@
     return '<a class="poster-card" href="' + href + '">' +
       '<div class="poster-frame">' + media + (c.video ? '<span class="play" title="공연 영상 있음">' + ICON.play + '</span>' : '') + '</div>' +
       '<div class="poster-meta"><h3>' + esc(title) + '</h3>' +
-      '<div class="sub"><span class="badge" data-type="' + esc(c.type) + '">' + esc(c.type === 'ETC' ? '특별' : c.type) + '</span>' +
+      '<div class="sub"><span class="badge" data-type="' + esc(c.type) + '">' + esc(c.type === 'ETC' ? '그외' : c.type) + '</span>' +
       '<span>' + esc(fmtDate(c.date, 'short')) + '</span></div>' + (extra || '') + '</div></a>';
   }
 
