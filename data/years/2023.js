@@ -199,11 +199,23 @@ KUG.addYear({
             },
             {
               "title": "となりのトトロ",
-              "composer": "久石 譲(Joe Hisaishi) (arr. 신지영)"
+              "composer": "久石 譲(Joe Hisaishi) (arr. 신지영)",
+              "videos": [
+                {
+                  "url": "https://www.youtube.com/watch?v=07cEwbGrTvY",
+                  "length": "4:21"
+                }
+              ]
             },
             {
               "title": "우리의 꿈 (원피스 오프닝)",
-              "composer": "박요한 (arr. 신지영)"
+              "composer": "박요한 (arr. 신지영)",
+              "videos": [
+                {
+                  "url": "https://www.youtube.com/watch?v=sHmADQpqRS4",
+                  "length": "2:52"
+                }
+              ]
             },
             {
               "title": "Cakewalk, from Serenade for String Orchestra",
