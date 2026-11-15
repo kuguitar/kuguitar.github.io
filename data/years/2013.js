@@ -512,6 +512,32 @@ KUG.addYear({
           }
         ]
       }
+    },
+    {
+      "id": "4ccfb9a3",
+      "slug": "2013_special",
+      "title": "고려대학교 제1회 문화예술제 (’13)",
+      "type": "ETC",
+      "date": "2013-11-10",
+      "venue": "여의도 KBS홀",
+      "conductor": "",
+      "poster": "assets/posters/4ccfb9a3.webp",
+      "pamphlet": 1,
+      "program": [
+        {
+          "performers": "고전기타부 교우회",
+          "pieces": [
+            {
+              "title": "Introduction & Fandango",
+              "composer": "Luigi Boccherini"
+            },
+            {
+              "title": "Bohemian Rhapsody",
+              "composer": "Queen"
+            }
+          ]
+        }
+      ]
     }
   ]
 });
