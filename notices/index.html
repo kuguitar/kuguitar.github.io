@@ -10,6 +10,7 @@
   <link rel="icon" href="assets/photos/logo.webp">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/nav.js"></script>
   <script src="js/site.js"></script>
 </head>
 <body>
@@ -38,6 +39,8 @@
       var K = window.KUG, N = db.notices, esc = K.esc;
       var CATS = ['전체', '재학생', '졸업생', '그 외'];
       var cat = '전체';
+      var qcat = new URLSearchParams(location.search).get('cat');   // 메뉴 '교우회 공지사항' → ?cat=졸업생
+      if (CATS.indexOf(qcat) > 0) cat = qcat;
 
       function body(n) {
         var html = n.body.map(function (b) {

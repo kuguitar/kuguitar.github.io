@@ -8,13 +8,7 @@
     band: 'https://band.us/band/9556389'
   };
 
-  var NAV = [
-    { href: 'about/', label: '소개' },
-    { href: 'concerts/', label: '연주회기록' },
-    { href: 'students/', label: '재학생' },   // 추후 stu.kuguitar.com
-    { href: 'alumni/', label: '교우회' },     // 추후 alum.kuguitar.com
-    { href: 'rules/', label: '회칙' }
-  ];
+  // 상단 메뉴 목록은 js/nav.js (ITEMS) — 다른 사이트와 공용
 
   var ICON = {
     menu: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>',
@@ -163,34 +157,14 @@
   };
 
   /* ---------- header / footer ---------- */
-  function currentPage() {
-    // NAV href('about/' 등)와 비교할 키. /concert/<슬러그>/ 상세는 연주회기록 탭을 켠다
-    var segs = location.pathname.replace(/index\.html$/, '').split('/').filter(Boolean);
-    var last = segs[segs.length - 1] || '';
-    if (last === 'concert.html' || segs[0] === 'concert') return 'concerts/';
-    if (/\.html$/.test(last)) return last;
-    return last ? last + '/' : 'index.html';
-  }
-
+  // 헤더(메뉴)는 js/nav.js 가 그린다. 여기서는 다크모드 버튼과 히어로 위 투명 헤더만 더한다.
   function renderHeader() {
     var host = document.getElementById('site-header');
-    if (!host) return;
-    var page = currentPage();
-    var overHero = document.body.hasAttribute('data-hero');
-    host.className = 'site-header' + (overHero ? ' over-hero' : '');
-    host.innerHTML =
-      '<div class="wrap">' +
-      '<a class="brand" href="index.html" aria-label="고려대학교 고전기타부 홈">' +
-      '<img class="brand-logo" src="assets/photos/logo.webp" alt="" width="38" height="38">' +
-      '<span class="brand-text"><span class="brand-name">고려대학교 고전기타부</span><span class="brand-sub">KOREA UNIV. CLASSICAL GUITAR CLUB</span></span></a>' +
-      '<nav class="nav" id="site-nav" aria-label="주 메뉴">' +
-      NAV.map(function (n) {
-        return '<a href="' + n.href + '"' + (n.href === page ? ' aria-current="page"' : '') + '>' + n.label + '</a>';
-      }).join('') +
-      '</nav>' +
-      '<button class="icon-btn theme-btn" type="button" aria-label="다크 모드 전환"></button>' +
-      '<button class="icon-btn menu-btn" type="button" aria-label="메뉴 열기" aria-expanded="false" aria-controls="site-nav">' + ICON.menu + '</button>' +
-      '</div>';
+    if (!host || !window.KUGNav) return;
+    host.className = 'site-header' + (document.body.hasAttribute('data-hero') ? ' over-hero' : '');
+    window.KUGNav.render(host, {
+      extraButtons: '<button class="icon-btn theme-btn" type="button" aria-label="다크 모드 전환"></button>'
+    });
 
     var themeBtn = host.querySelector('.theme-btn');
     function syncThemeIcon() {
@@ -206,22 +180,6 @@
       syncThemeIcon();
     });
 
-    var menuBtn = host.querySelector('.menu-btn');
-    var nav = host.querySelector('.nav');
-    function setMenu(open) {
-      nav.classList.toggle('open', open);
-      host.classList.toggle('menu-open', open);
-      menuBtn.setAttribute('aria-expanded', String(open));
-      menuBtn.setAttribute('aria-label', open ? '메뉴 닫기' : '메뉴 열기');
-      menuBtn.innerHTML = open ? ICON.close : ICON.menu;
-    }
-    menuBtn.addEventListener('click', function () { setMenu(!nav.classList.contains('open')); });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') setMenu(false); });
-    window.matchMedia('(min-width: 821px)').addEventListener('change', function (e) { if (e.matches) setMenu(false); });
-
-    function onScroll() { host.classList.toggle('scrolled', window.scrollY > 8); }
-    onScroll();
-    window.addEventListener('scroll', onScroll, { passive: true });
   }
 
   function renderFooter() {
@@ -234,7 +192,7 @@
       '<div><div class="footer-brand"><img src="assets/photos/logo.webp" alt="" width="52" height="52">' +
       '<div><strong>고려대학교 고전기타부</strong><span>KOREA UNIV. CLASSICAL GUITAR CLUB · SINCE 1974</span></div></div>' +
       '<p class="footer-addr">02841 서울 성북구 안암로 145<br>고려대학교 안암캠퍼스 학생회관 611호</p></div>' +
-      '<div><h4>둘러보기</h4><ul>' + NAV.map(function (n) { return '<li><a href="' + n.href + '">' + n.label + '</a></li>'; }).join('') + '</ul></div>' +
+      '<div><h4>둘러보기</h4><ul>' + (window.KUGNav ? window.KUGNav.ITEMS : []).map(function (n) { return '<li><a href="' + esc(window.KUGNav.abs(n.href)) + '">' + esc(n.label) + '</a></li>'; }).join('') + '</ul></div>' +
       '<div><h4>채널</h4><ul>' +
       '<li><a class="social" href="' + LINKS.youtube + '" target="_blank" rel="noopener">' + ICON.youtube + 'YouTube</a></li>' +
       '<li><a class="social" href="' + LINKS.instagram + '" target="_blank" rel="noopener">' + ICON.instagram + '@ku_classicguitar</a></li>' +

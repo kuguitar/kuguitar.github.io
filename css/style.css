@@ -114,6 +114,7 @@ button { font: inherit; color: inherit; }
 .site-header.over-hero:not(.scrolled) .brand-sub { color: rgba(255,255,255,.75); }
 .site-header.over-hero:not(.scrolled) .brand-logo { background: #fff; }
 .site-header .wrap { height: 100%; display: flex; align-items: center; gap: 24px; }
+.site-header .kug-global { height: 100%; }   /* js/nav.js 의 1단(공통 메뉴) 묶음 */
 
 .brand { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
 .brand:hover { color: inherit; }
@@ -131,6 +132,29 @@ button { font: inherit; color: inherit; }
 .nav a[aria-current="page"] { color: var(--crimson); font-weight: 700; }
 .over-hero:not(.scrolled) .nav a[aria-current="page"] { color: #fff; }
 .over-hero:not(.scrolled) .nav a:hover { background: rgba(255,255,255,.14); }
+.nav-group { position: relative; }
+.nav-parent {
+  display: inline-flex; align-items: center; gap: 2px;
+  padding: 8px 10px 8px 14px; border: 0; border-radius: 999px; background: transparent;
+  font: inherit; font-size: 15px; font-weight: 500; color: inherit; cursor: pointer;
+  transition: background .15s, color .15s;
+}
+.nav-parent svg { width: 16px; height: 16px; transition: transform .15s; }
+.nav-parent[aria-expanded="true"] svg { transform: rotate(180deg); }
+.nav-parent:hover { background: color-mix(in srgb, var(--ink) 6%, transparent); }
+.nav-parent[aria-current="page"] { color: var(--crimson); font-weight: 700; }
+.over-hero:not(.scrolled) .nav-parent[aria-current="page"] { color: #fff; }
+.over-hero:not(.scrolled) .nav-parent:hover { background: rgba(255,255,255,.14); }
+.nav-sub {
+  position: absolute; top: calc(100% + 6px); left: 0; min-width: 168px;
+  display: flex; flex-direction: column; padding: 6px;
+  background: var(--bg); color: var(--ink);
+  border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow-md);
+}
+.nav-sub[hidden] { display: none; }
+.nav .nav-sub a { border-radius: 10px; white-space: nowrap; }
+.over-hero:not(.scrolled) .nav .nav-sub a[aria-current="page"] { color: var(--crimson); }
+.over-hero:not(.scrolled) .nav .nav-sub a:hover { background: color-mix(in srgb, var(--ink) 6%, transparent); }
 
 .icon-btn {
   display: inline-grid; place-items: center; width: 40px; height: 40px;
@@ -157,6 +181,15 @@ button { font: inherit; color: inherit; }
   .nav a { padding: 14px 4px; border-radius: 0; border-bottom: 1px solid var(--line); font-size: 17px; }
   .nav a:hover { background: transparent; }
   .over-hero:not(.scrolled) .nav a[aria-current="page"] { color: var(--crimson); }
+  .nav-parent {
+    width: 100%; justify-content: space-between;
+    padding: 14px 4px; border-radius: 0; border-bottom: 1px solid var(--line); font-size: 17px;
+  }
+  .nav-parent:hover { background: transparent; }
+  .over-hero:not(.scrolled) .nav-parent[aria-current="page"] { color: var(--crimson); }
+  .nav-sub { position: static; min-width: 0; padding: 0 0 0 16px; border: 0; border-radius: 0; box-shadow: none; background: transparent; }
+  .nav .nav-sub a { border-radius: 0; font-size: 16px; color: var(--muted); }
+  .nav .nav-sub a[aria-current="page"] { color: var(--crimson); }
   .site-header.menu-open { background: var(--bg); color: var(--ink); }
   .site-header.menu-open .brand-sub { color: var(--muted); }
   .brand-sub { display: none; }
