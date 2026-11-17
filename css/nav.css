@@ -17,8 +17,7 @@
   --kn-h: 64px;
   --kn-gutter: clamp(16px, 4vw, 32px);
 
-  position: fixed; top: 0; left: 0; right: 0; z-index: 1030;
-  height: var(--kn-h);
+  position: sticky; top: 0; z-index: 1030;
   background: color-mix(in srgb, var(--kn-bg) 92%, transparent);
   backdrop-filter: saturate(1.4) blur(12px);
   -webkit-backdrop-filter: saturate(1.4) blur(12px);
@@ -38,6 +37,30 @@
   width: 100%; max-width: 1180px; height: 100%; margin: 0 auto; padding: 0 var(--kn-gutter);
   display: flex; align-items: center; gap: 24px;
 }
+.kug-header .kug-global { height: var(--kn-h); }
+
+/* 2단: 그 사이트 자체 메뉴 */
+.kug-header .kug-local {
+  height: 46px;
+  background: var(--kn-crimson); color: #fff;
+}
+.kug-header .kug-local .wrap { gap: 20px; }
+.kug-header .kug-local-title {
+  flex-shrink: 0; font-weight: 700; font-size: 15px; letter-spacing: -0.01em; color: #fff;
+}
+.kug-header .kug-local-nav {
+  margin-left: auto; height: 100%; display: flex; align-items: stretch; gap: 2px;
+  overflow-x: auto; scrollbar-width: none; -webkit-overflow-scrolling: touch;
+}
+.kug-header .kug-local-nav::-webkit-scrollbar { display: none; }
+.kug-header .kug-local-nav a {
+  display: flex; align-items: center; padding: 0 12px; white-space: nowrap;
+  font-size: 14px; font-weight: 500; color: rgba(255,255,255,.82);
+  border-bottom: 2px solid transparent; transition: color .15s, border-color .15s;
+}
+.kug-header .kug-local-nav a:hover,
+.kug-header .kug-local-nav a:focus { color: #fff; }
+.kug-header .kug-local-nav a[aria-current="page"] { color: #fff; font-weight: 700; border-bottom-color: #fff; }
 
 .kug-header .brand { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
 .kug-header .brand-logo {
@@ -71,7 +94,6 @@
   display: flex; flex-direction: column; padding: 6px;
   background: var(--kn-bg); border: 1px solid var(--kn-line); border-radius: 14px; box-shadow: var(--kn-shadow-md);
 }
-.kug-header .nav-group:last-child .nav-sub { left: auto; right: 0; }
 .kug-header .nav-sub[hidden] { display: none; }
 .kug-header .nav .nav-sub a { border-radius: 10px; white-space: nowrap; }
 
@@ -104,6 +126,9 @@
   .kug-header .nav-parent { width: 100%; justify-content: space-between; }
   .kug-header .nav a:hover,
   .kug-header .nav-parent:hover { background: transparent; }
+  .kug-header .kug-local .wrap { gap: 12px; }
+  .kug-header .kug-local-nav { margin-left: 0; }
+  .kug-header .kug-local-nav a { padding: 0 9px; }
   .kug-header .nav-sub {
     position: static; min-width: 0; padding: 0 0 0 16px;
     border: 0; border-radius: 0; box-shadow: none; background: transparent;
