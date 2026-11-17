@@ -116,6 +116,7 @@ PAGE = """<!doctype html>
   <link rel="icon" href="assets/photos/logo.webp">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
   <link rel="stylesheet" href="css/style.css">
+  <script src="js/nav.js"></script>
   <script src="js/site.js"></script>
   <script type="application/ld+json">{jsonld}</script>
 </head>
